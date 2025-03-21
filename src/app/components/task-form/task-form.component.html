@@ -1,0 +1,6 @@
+<form [action]="action">
+    <h2>{{ title }}</h2>
+    <app-input label="Task title" name="title" [required]=true></app-input>
+    <app-checkbox label="Completed" name="completed"></app-checkbox>
+    <app-btn label="Save Task" type="submit"></app-btn>
+</form>

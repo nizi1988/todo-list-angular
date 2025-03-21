@@ -1,0 +1,7 @@
+<div class="task-list__item">
+    <h2>{{ task.title }}</h2>
+    <app-checkbox label="Completed" name="{{'state-' +task.id}}" [checked]="task.completed"></app-checkbox>
+    <p>{{ task.completed }}</p>
+    <button>Delete</button>
+    <button>Edit</button>
+</div>

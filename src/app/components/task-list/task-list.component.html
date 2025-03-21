@@ -1,0 +1,4 @@
+<app-link [href]="'/tasks/create'" label="Create a new task" ></app-link>
+<div class="task-list">
+    <app-task *ngFor="let task of sortedTask()" [task]="task"></app-task>
+</div>
