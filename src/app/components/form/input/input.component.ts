@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {FormControl, ReactiveFormsModule, ControlContainer, FormGroupDirective  } from '@angular/forms';
 
 @Component({
@@ -14,10 +14,26 @@ import {FormControl, ReactiveFormsModule, ControlContainer, FormGroupDirective  
   ]
 })
 export class InputComponent {
-  @Input() label: string = '';
+  private _name: string;
   @Input() name: string = '';
+  @Input() label: string = '';
   @Input() value: string = '';
   @Input() placeholder: string = '';
   @Input() required: boolean = false;
   @Input() control: FormControl;
+
+  get inputValue() {
+    return this._name
+  }
+
+  set inputValue(value: string) {
+    this._name = value;
+  }
+
+
+  @Output() valueChange = new EventEmitter();
+
+  valueChanging() {
+    this.valueChange.emit(this.name);
+  }
 }

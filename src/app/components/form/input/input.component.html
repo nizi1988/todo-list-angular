@@ -3,10 +3,11 @@
   <input
     type="text"
     class="input"
-    [name]="name"
+    [(ngModel)]="name"
     [value]="value"
     [placeholder]="placeholder"
     [required]="required"
     [formControl]="control"
+    (input)="valueChanging()"
   >
 </label>
