@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TaskFormComponent } from "../../../components/task-form/task-form.component";
+import { TasksService } from "../../../services/tasks/tasks.service";
 
 @Component({
   selector: 'app-task-create',
@@ -8,5 +9,5 @@ import { TaskFormComponent } from "../../../components/task-form/task-form.compo
   styleUrl: './task-create.component.scss'
 })
 export class TaskCreateComponent {
-
+  constructor(public tasksService: TasksService) { }
 }

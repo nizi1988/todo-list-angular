@@ -1,6 +1,14 @@
-<form [action]="action">
-    <h2>{{ title }}</h2>
-    <app-input label="Task title" name="title" [required]=true></app-input>
-    <app-checkbox label="Completed" name="completed"></app-checkbox>
-    <app-btn label="Save Task" type="submit"></app-btn>
+<!--<form (submit)="this.tasksService.saveTask()">-->
+<form [formGroup]="taskFormGroup" (submit)="onSubmit()">
+    <h2>{{ headline }}</h2>
+    
+    <app-input [control]="taskFormGroup.controls['taskTitle']" label="Task title:" [name]="'title'"  [required]=true ></app-input>
+    
+    @if (taskFormGroup.controls['taskTitle'].errors?.['required']) {
+      <app-helper className="error" text="You need a title for your task"></app-helper>
+    }
+    
+    <app-checkbox label="Completed" name="completed" [control]="taskFormGroup.controls['completed']"></app-checkbox>
+    <app-btn label="Save Task" type="submit" [disabled]="!taskFormGroup.valid"></app-btn>
+
 </form>
