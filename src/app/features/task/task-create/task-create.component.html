@@ -1,1 +1,13 @@
-<app-task-form headline="Add a task"></app-task-form>
+<form [formGroup]="taskFormGroup" (submit)="onSubmit()">
+    <h2>Add a task</h2>
+    
+    <app-input [control]="taskFormGroup.controls['taskTitle']" label="Task title:"  [required]=true ></app-input>
+    
+    @if (taskFormGroup.controls['taskTitle'].errors?.['required']) {
+        <app-helper className="error" text="You need a title for your task"></app-helper>
+    }
+    
+    <app-checkbox label="Completed" [control]="taskFormGroup.controls['completed']"></app-checkbox>
+    <app-btn label="Save Task" type="submit" [disabled]="!taskFormGroup.valid"></app-btn>
+
+</form>
