@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { TaskComponent } from "../task/task.component";
 import { LinkComponent } from "../form/link/link.component";
 import {Task} from "../../interfaces/task";
 import {NgForOf} from "@angular/common";
+import {TasksService} from "../../services/tasks/tasks.service";
 
 @Component({
   selector: 'app-task-list',
@@ -11,25 +12,15 @@ import {NgForOf} from "@angular/common";
   styleUrl: './task-list.component.scss'
 })
 export class TaskListComponent {
-  tasksList: Task[] =[
-    {
-      id: 0,
-      title: 'Task 1',
-      completed: true
-    },
-    {
-      id: 1,
-      title: 'Task 2',
-      completed: false
-    },
-    {
-      id: 3,
-      title: 'Task 3',
-      completed: true
-    },
-  ]
+  taskList: Signal<Task[]>;
+  sortedList: Signal<Task[]>;
 
-  sortedTask(): Task[] {
-    return this.tasksList.sort((a, b) =>  + a.completed - + b.completed);
+  constructor(public tasksService: TasksService) {
+    this.taskList = tasksService.taskList;
+    this.sortedList = tasksService.sortedList;
+
+    console.log(this.taskList());
+    console.log(this.sortedList());
   }
+
 }

@@ -1,4 +1,11 @@
 <app-link [href]="'/tasks/create'" label="Create a new task" ></app-link>
-<div class="task-list">
-    <app-task *ngFor="let task of sortedTask()" [task]="task"></app-task>
-</div>
+<!--show list markup only if there is at least one task-->
+@if (taskList().length > 0) {
+    <div class="task-list">
+        <app-task *ngFor="let task of sortedList()" [task]="task"></app-task>
+    </div>
+} @else {
+    <div>
+        There are no tasks yet.
+    </div>
+}
