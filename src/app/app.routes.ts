@@ -6,6 +6,6 @@ import { TaskEditComponent } from "./features/task/task-edit/task-edit.component
 export const routes: Routes = [
     { path: 'tasks/overview', component: TaskListComponent },
     { path: 'tasks/create', component: TaskCreateComponent },
-    { path: 'tasks/:id/edit:', component: TaskEditComponent },
+    { path: 'tasks/:id/edit', component: TaskEditComponent },
     { path: '',   redirectTo: '/tasks/overview', pathMatch: 'full' }, // redirect to `first-component`
 ];

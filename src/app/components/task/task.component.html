@@ -3,7 +3,7 @@
         <h2>{{ task.title }}</h2>
         <app-checkbox label="Completed" name="{{'state-' +task.id}}" [checked]="task.completed" [control]="taskUpdate.controls['completed']"></app-checkbox>
         <button>Delete</button>
-        <app-link [href]="'/tasks/edit/' + task.id" label="Edit" ></app-link>
+        <app-link [href]="'/tasks/' + task.id + '/edit'" label="Edit" ></app-link>
 
         <input type="hidden" value="{{task.id}}">
     </form>
