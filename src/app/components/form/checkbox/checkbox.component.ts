@@ -1,13 +1,23 @@
 import { Component, Input } from '@angular/core';
+import {ReactiveFormsModule, FormControl, ControlContainer, FormGroupDirective} from "@angular/forms";
 
 @Component({
   selector: 'app-checkbox',
-  imports: [],
+  imports: [
+    ReactiveFormsModule
+  ],
   templateUrl: './checkbox.component.html',
-  styleUrl: './checkbox.component.scss'
+  styleUrl: './checkbox.component.scss',
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: FormGroupDirective
+    }
+  ]
 })
 export class CheckboxComponent {
   @Input() label:  string = '';
   @Input() name:  string = '';
   @Input() checked:  boolean = false;
+  @Input() control: FormControl;
 }

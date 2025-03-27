@@ -1,10 +1,17 @@
 import { Component, Input } from '@angular/core';
+import {FormControl, ReactiveFormsModule, ControlContainer, FormGroupDirective  } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
-  imports: [],
+  imports: [ ReactiveFormsModule ],
   templateUrl: './input.component.html',
-  styleUrl: './input.component.scss'
+  styleUrl: './input.component.scss',
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: FormGroupDirective
+    }
+  ]
 })
 export class InputComponent {
   @Input() label: string = '';
@@ -12,4 +19,5 @@ export class InputComponent {
   @Input() value: string = '';
   @Input() placeholder: string = '';
   @Input() required: boolean = false;
+  @Input() control: FormControl;
 }
