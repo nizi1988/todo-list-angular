@@ -1,6 +1,7 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { TaskListState } from '../../interfaces/task-list'
 import { Task } from '../../interfaces/task'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,12 @@ export class TasksService {
   public sortedList = computed(() => this.stateTasks().taskList.sort((a, b) =>  + a.completed - + b.completed));
   public sortedIdList = computed(() => Math.max(...this.stateTasks().taskList.map(a => a.id)));
 
-  private saveToLocalStorage(){
+  constructor(private router: Router) {
+  }
+
+  private saveToLocalStorage(redirect: boolean = true){
     localStorage.setItem('tasks', JSON.stringify(this.taskList()));
-    console.log('save to local storage');
+    this.router.navigate(['/tasks/overview']);
   }
 
   public createTask(taskToSave: Task){
@@ -37,9 +41,36 @@ export class TasksService {
     this.saveToLocalStorage();
   }
 
+  public updateTask(id:number, updatedTask: Task){
+    console.log("service update function");
+    console.log(updatedTask);
+    const updatedTaskList = this.stateTasks().taskList.map((task) => {
+        return task.id === id ? updatedTask : task;
+    })
+
+    this.stateTasks.update((stateTasks) => ({
+        ...stateTasks,
+        taskList: updatedTaskList,
+    }));
+
+    this.saveToLocalStorage();
+
+  }
+
+  public deleteTask(id:number){
+    const cleanedTaskList = this.stateTasks().taskList.filter((task) => task.id !== id);
+
+    this.stateTasks.update((stateTasks) => ({
+      ...stateTasks,
+      taskList: cleanedTaskList,
+    }));
+
+    this.saveToLocalStorage(false);
+  }
+
 
    public getTaskById(id: number){
-     return this.stateTasks().taskList.find(x => x.id === id);
+     return this.stateTasks().taskList.find(t => t.id === id);
    }
 
 }
