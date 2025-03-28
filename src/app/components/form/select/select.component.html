@@ -1,0 +1,14 @@
+<label>
+  <span class="label"></span>
+      <select
+        class="select"
+        [name]="name"
+        [required]="required"
+        (change)="onSelectChange($event)"
+      >
+      <option *ngFor="let option of options" [value]="option.key">
+        {{ option.label }}
+      </option>
+  </select>
+</label>
+
