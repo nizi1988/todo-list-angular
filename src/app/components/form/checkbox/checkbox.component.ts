@@ -20,4 +20,5 @@ export class CheckboxComponent {
   @Input() name:  string = '';
   @Input() checked:  boolean = false;
   @Input() control: FormControl;
+  @Input() useFormControl: boolean = true;
 }
