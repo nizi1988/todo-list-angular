@@ -1,0 +1,14 @@
+<form [formGroup]="taskUpdateGroup" (submit)="onSubmit()">
+    <h2>Edit task (Id: {{ task.id }}):</h2>
+    <app-input [control]="taskUpdateGroup.controls['taskTitle']" label="Task title:" [required]=true [name]="task.title"></app-input>
+    
+    @if (taskUpdateGroup.controls['taskTitle'].errors?.['required']) {
+        <app-helper className="error" text="You need a title for your task"></app-helper>
+    }
+    
+    <app-checkbox label="Completed" [checked]="task.completed" [useFormControl]="false" [name]="'stateCheckbox'"></app-checkbox>
+    <app-btn label="Save Task" type="submit" [disabled]="!taskUpdateGroup.valid"></app-btn>
+</form>
+
+
+
