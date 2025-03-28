@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input } from '@angular/core';
 import {ReactiveFormsModule, FormControl, ControlContainer, FormGroupDirective} from "@angular/forms";
 
 @Component({
