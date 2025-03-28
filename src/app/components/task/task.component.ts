@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../interfaces/task';
 import { CheckboxComponent } from "../form/checkbox/checkbox.component";
 import {ReactiveFormsModule, FormGroup, FormControl, Validators} from "@angular/forms";
@@ -12,12 +12,16 @@ import {LinkComponent} from "../form/link/link.component";
 })
 export class TaskComponent {
   @Input() task!: Task;
+  @Output() taskDelete = new EventEmitter<void>();
+  @Output() changeComplete = new EventEmitter<void>();
 
-  taskUpdate = new FormGroup({
-    completed: new FormControl<boolean | null>(false),
-  });
+  //send delete event to parent component, for deletion
+  onTaskDelete() {
+    this.taskDelete.emit()
+  }
 
-  onSubmit(){
-    console.log('submitted')
+  //send change event to parent component, for updating the task completion status
+  onTaskCompleteChange() {
+    this.changeComplete.emit()
   }
 }
