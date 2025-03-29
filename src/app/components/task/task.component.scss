@@ -1,0 +1,42 @@
+$checkbox-input-width: 16px;
+.task-list__item {
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+
+  @media screen and (max-width: 600px) {
+    flex-wrap: wrap;
+  }
+
+  app-checkbox {
+    @media screen and (max-width: 600px) {
+      flex: 0 1 100%
+    }
+  }
+
+  h2 {
+    font-size: 16px;
+    min-width: 33.3%;
+
+    @media screen and (max-width: 600px) {
+      flex: 0 1 100%
+    }
+  }
+
+  [classname="btn--secondary"] {
+    margin-left: auto;
+
+    @media screen and (max-width: 600px) {
+      margin-left: 0;
+    }
+  }
+}
+
+.task-list__item--completed {
+  h2 {
+    text-decoration: line-through;
+  }
+}

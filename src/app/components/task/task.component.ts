@@ -1,12 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from '../../interfaces/task';
 import { CheckboxComponent } from "../form/checkbox/checkbox.component";
-import {ReactiveFormsModule, FormGroup, FormControl, Validators} from "@angular/forms";
-import {LinkComponent} from "../form/link/link.component";
+import { BtnComponent } from "../form/btn/btn.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { LinkComponent } from "../form/link/link.component";
 
 @Component({
   selector: 'app-task',
-  imports: [CheckboxComponent, ReactiveFormsModule, LinkComponent],
+  imports: [ CheckboxComponent, BtnComponent, ReactiveFormsModule, LinkComponent ],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss'
 })
