@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 export class TasksService {
   //get all tasks if there are any in local storage
   public stateTasks= signal<TaskListState>( { taskList: JSON.parse(localStorage.getItem('tasks')!) || [] });
-  public taskList = computed(() => this.stateTasks().taskList);
-  public sortedList = computed(() => this.stateTasks().taskList.sort((a, b) =>  + a.completed - + b.completed));
-  public sortedIdList = computed(() => Math.max(...this.stateTasks().taskList.map(a => a.id)));
+  //get the highest id from the task list
+  public highestId = computed(() => Math.max(...this.stateTasks().taskList.map(a => a.id)));
+  //create a signal for the filtered list
   public filtered = signal<Task[]>(this.stateTasks().taskList);
+  //create a signal for the active filter
+  public activeFilter = signal<string>('all');
 
 
   constructor(private router: Router) {
@@ -20,15 +22,16 @@ export class TasksService {
 
   //save the current task list to local storage and redirect to overview if needed
   private saveToLocalStorage(redirect: boolean = true){
-    localStorage.setItem('tasks', JSON.stringify(this.taskList()));
+    localStorage.setItem('tasks', JSON.stringify(this.filtered()));
     redirect && this.router.navigate(['/tasks/overview']);
   }
 
   public createTask(taskToSave: Task){
     let id = 0;
+    
     //if there is a list in local storage, get the last id and add 1
     if( localStorage.getItem('tasks') !== null ){
-      id = this.sortedIdList() + 1;
+      id = this.highestId() + 1;
     }
 
     //create a new task with the new id
@@ -42,6 +45,9 @@ export class TasksService {
       ...stateTasks,
       taskList: [...stateTasks.taskList, newTask],
     }));
+
+    // update the filtered list based on the all filter
+    this.filterTasks(this.activeFilter());
 
     //update local storage
     this.saveToLocalStorage();
@@ -59,6 +65,9 @@ export class TasksService {
         taskList: updatedTaskList,
     }));
 
+    // update the filtered list based on the active filter
+    this.filterTasks(this.activeFilter());
+
     //update local storage
     this.saveToLocalStorage();
 
@@ -73,12 +82,16 @@ export class TasksService {
       taskList: cleanedTaskList,
     }));
 
+    // update the filtered list based on the active filter
+    this.filterTasks(this.activeFilter());
+
     this.saveToLocalStorage(false);
   }
 
   public filterTasks(filter: string){
     // Reset the filtered list to the initial task list
     this.filtered.set(this.stateTasks().taskList);
+    this.activeFilter.set(filter);
 
     let filteredTasks: Task[];
     switch (filter) {
