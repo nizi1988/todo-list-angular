@@ -28,7 +28,7 @@ export class TasksService {
 
   public createTask(taskToSave: Task){
     let id = 0;
-    
+
     //if there is a list in local storage, get the last id and add 1
     if( localStorage.getItem('tasks') !== null ){
       id = this.highestId() + 1;
