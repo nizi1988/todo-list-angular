@@ -1,13 +1,14 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {NgForOf} from "@angular/common";
+import { NgForOf } from "@angular/common";
 
 @Component({
   selector: 'app-select',
-  imports: [NgForOf],
+  imports: [ NgForOf ],
   templateUrl: './select.component.html',
   styleUrl: './select.component.scss'
 })
 export class SelectComponent {
+  @Input() label: string = '';
   @Input() name: string = '';
   @Input() required: boolean = false;
   @Input() options: Array<{ key: string, label: string }> = [];
