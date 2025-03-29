@@ -1,6 +1,6 @@
 <div class="task-list__item" [class.task-list__item--completed]="task.completed">
     <h2>{{ task.title }}</h2>
-    <app-checkbox (change)="onTaskCompleteChange()" label="Completed" name="{{'state-' +task.id}}" [checked]="task.completed"  [useFormControl]="false"></app-checkbox>
+    <app-checkbox (change)="onTaskCompleteChange()" label="Completed" [completed]="task.completed"  [useFormControl]="false"></app-checkbox>
     <app-btn className="btn--secondary" (click)="onTaskDelete()" label="Delete"></app-btn>
     <app-link className="link--primary" [href]="'/tasks/' + task.id + '/edit'" label="Edit" ></app-link>
 
