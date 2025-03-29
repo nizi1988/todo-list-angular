@@ -1,21 +1,3 @@
 <div class="tasks-form-wrap">
-    <form [formGroup]="taskFormGroup" (submit)="onSubmit()">
-        <h2>Add a task</h2>
-    
-        <div class="input-wrap">
-            <app-input [control]="taskFormGroup.controls['taskTitle']" label="Task title:"  [required]=true ></app-input>
-            
-            @if (taskFormGroup.controls['taskTitle'].errors?.['required']) {
-                <app-helper className="helper--error" text="You need a title for your task"></app-helper>
-            }
-        </div>
-
-        <app-checkbox label="Completed" [control]="taskFormGroup.controls['completed']"></app-checkbox>
-        
-        <div class="tasks-form__button">
-            <app-btn label="Save Task" type="submit" [disabled]="!taskFormGroup.valid"></app-btn>
-            <app-link className="link--primary" [href]="'/tasks/overview'" label="Back" ></app-link>
-        </div>
-
-    </form>
+    <app-form headline="Create a new task" [ngModelName]="''" [task]="staticTask" (formSubmit)="onSubmit($event)"></app-form>
 </div>

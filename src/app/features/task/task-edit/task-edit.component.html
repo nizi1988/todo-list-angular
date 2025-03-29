@@ -1,22 +1,5 @@
 <div class="tasks-form-wrap">
-    <form [formGroup]="taskUpdateGroup" (submit)="onSubmit()">
-        <h2>Edit task (Id: {{ task.id }}):</h2>
-        
-        <div class="input-wrap">
-            <app-input [control]="taskUpdateGroup.controls['taskTitle']" label="Task title:" [required]=true [name]="task.title"></app-input>
-            
-            @if (taskUpdateGroup.controls['taskTitle'].errors?.['required']) {
-                <app-helper className="helper--error" text="You need a title for your task"></app-helper>
-            }
-        </div>
-        
-        <app-checkbox label="Completed" [checked]="task.completed" [useFormControl]="false" [name]="'stateCheckbox'"></app-checkbox>
-        <div class="tasks-form__button">
-            <app-btn label="Save Task" type="submit" [disabled]="!taskUpdateGroup.valid"></app-btn>
-            <app-link className="link--primary" [href]="'/tasks/overview'" label="Back" ></app-link>
-
-        </div>
-    </form>
+      <app-form headline="Edit task (Id: {{ task.id }}):" [task]="task" [ngModelName]="'stateCheckbox'" [createTask]="false" (formSubmit)="onSubmit($event)"></app-form>
 </div>
 
 

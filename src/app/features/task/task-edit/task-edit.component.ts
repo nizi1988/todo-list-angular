@@ -1,23 +1,15 @@
 import { Component, Input, NgModule } from '@angular/core';
 import { TasksService } from "../../../services/tasks/tasks.service";
-import { BtnComponent } from "../../../components/form/btn/btn.component";
-import { CheckboxComponent } from "../../../components/form/checkbox/checkbox.component";
-import { HelperComponent } from "../../../components/form/helper/helper.component";
-import { InputComponent } from "../../../components/form/input/input.component";
-import { LinkComponent } from "../../../components/form/link/link.component";
 import  { Task } from "../../../interfaces/task";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
+import {FormComponent} from "../../../components/form/form/form.component";
 
 @Component({
   selector: 'app-task-edit',
   imports: [
-    BtnComponent,
-    CheckboxComponent,
-    HelperComponent,
-    InputComponent,
     ReactiveFormsModule,
-    LinkComponent
+    FormComponent
   ],
   templateUrl: './task-edit.component.html',
   styleUrl: './task-edit.component.scss'
@@ -30,11 +22,6 @@ export class TaskEditComponent {
 
   constructor(private tasksService: TasksService, private route: ActivatedRoute) {
   }
-  
-  taskUpdateGroup = new FormGroup({
-    taskTitle: new FormControl<string | null>(null, [Validators.required]),
-    completed: new FormControl<boolean | null>(false),
-  });
 
   ngOnInit(){
     //get the task id from the route, to retrieve the task from the service
@@ -42,13 +29,13 @@ export class TaskEditComponent {
     this.task = this.tasksService.getTaskById(routeIdAsNumber)!;
   }
 
-  onSubmit(){
+  onSubmit(formGroup: FormGroup){
     //update the task with the new values and send it to the service
     if (this.task) {
       const updatedTask = {
         ...this.task,
-        title: <string>this.taskUpdateGroup.value.taskTitle,
-        completed: <boolean>this.taskUpdateGroup.value.completed
+        title: formGroup.value.taskTitle,
+        completed: formGroup.value.completed
       };
 
       this.tasksService.updateTask(updatedTask.id, updatedTask);

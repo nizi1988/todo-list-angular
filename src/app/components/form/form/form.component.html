@@ -1,0 +1,19 @@
+<div class="tasks-form-wrap">
+    <form [formGroup]="taskFormGroup" (submit)="onFormSubmit()">
+        <h2>{{  headline }}</h2>
+        <div class="input-wrap">
+           <app-input [control]="taskFormGroup.controls['taskTitle']" label="Task title:" [required]=true [name]="task.title"></app-input>
+            
+            @if (taskFormGroup.controls['taskTitle'].errors?.['required']) {
+                <app-helper className="helper--error" text="You need a title for your task"></app-helper>
+            }
+        </div>
+        
+        <app-checkbox label="Completed"  [control]="taskFormGroup.controls['completed']" [completed]="task.completed"></app-checkbox>
+
+        <div class="tasks-form__button">
+            <app-btn label="Save Task" type="submit" [disabled]="!taskFormGroup.valid"></app-btn>
+            <app-link className="link--primary" [href]="'/tasks/overview'" label="Back" ></app-link>
+        </div>
+    </form>
+</div>
