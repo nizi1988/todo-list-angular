@@ -1,1 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --black: #131312;
+  --white: #ffffff;
+  --primary-color: #e6e2dd;
+  --primary-color-darken: color-mix(in srgb, #e6e2dd, #000000 20%);
+
+  --border-radius: 12px;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  background: var(--primary-color);
+  min-height: 100dvh;
+  font-family: "Merriweather Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  color: var(--black);
+}
+
+.tasks-form-wrap {
+  padding: 24px;
+
+  h2 {
+    font-family: "Cantata One", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 24px;
+    flex: 0 1 100%;
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 24px;
+
+    &.ng-valid {
+      .input-wrap {
+        margin-bottom: 42px;
+      }
+    }
+  }
+
+  .input-wrap,
+  app-checkbox {
+    flex: 0 1 calc((100% - 24px) / 2);
+
+    @media screen and (max-width: 600px) {
+      flex: 0 1 100%;
+    }
+  }
+
+  app-checkbox {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-wrap {
+    app-input {
+      width: 100%;
+      display: flex;
+    }
+  }
+
+  app-helper {
+    width: 100%;
+  }
+
+  .tasks-form__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+  }
+}
+

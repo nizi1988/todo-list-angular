@@ -1,0 +1,32 @@
+.page-container {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  min-height: 50dvh;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: relative;
+
+  @media screen and (max-width: 1000px) {
+    max-width: calc(100vw - 40px);
+  }
+}
+
+h1 {
+  font-family: "Cantata One", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 48px;
+  background: var(--primary-color-darken);
+  padding: 48px 24px 24px 24px;
+  border-top-right-radius: 16px;
+  border-top-left-radius: 6px;
+}
