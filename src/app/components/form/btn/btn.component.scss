@@ -1,0 +1,29 @@
+.btn {
+  padding: 0 24px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  box-shadow: none;
+  border: none;
+  background: var(--primary-color);
+  border-radius: var(--border-radius);
+  transition: all 0.2s ease-in-out;
+  font-family: "Cantata One", serif;
+
+  &.btn--secondary {
+    background: var(--primary-color-darken);
+  }
+
+  &:not([disabled]) {
+    &:hover {
+      background: var(--primary-color-darken);
+    }
+  }
+
+    &:disabled {
+       cursor: not-allowed;
+    }
+
+}

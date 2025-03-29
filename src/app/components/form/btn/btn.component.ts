@@ -9,6 +9,11 @@ import { Component, Input } from '@angular/core';
 })
 export class BtnComponent {
   @Input() label: string = '';
-  @Input() type: 'button' | 'submit' = 'submit';
+  @Input() type: 'button' | 'submit' = 'button';
   @Input() disabled: boolean = false;
+  @Input() className: string = '';
+
+  get classes(): string {
+    return `btn ${this.className}`;
+  }
 }
