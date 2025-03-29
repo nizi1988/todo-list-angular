@@ -1,11 +1,9 @@
-import {Component, Input } from '@angular/core';
-import {ReactiveFormsModule, FormControl, ControlContainer, FormGroupDirective} from "@angular/forms";
+import { Component, Input } from '@angular/core';
+import { ReactiveFormsModule, FormControl, ControlContainer, FormGroupDirective } from "@angular/forms";
 
 @Component({
   selector: 'app-checkbox',
-  imports: [
-    ReactiveFormsModule
-  ],
+  imports: [ ReactiveFormsModule ],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss',
   viewProviders: [
