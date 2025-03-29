@@ -1,12 +1,12 @@
-import {Component, Input, NgModule, Signal} from '@angular/core';
-import { input, effect } from "@angular/core";
+import { Component, Input, NgModule } from '@angular/core';
 import { TasksService } from "../../../services/tasks/tasks.service";
-import {BtnComponent} from "../../../components/form/btn/btn.component";
-import {CheckboxComponent} from "../../../components/form/checkbox/checkbox.component";
-import {HelperComponent} from "../../../components/form/helper/helper.component";
-import {InputComponent} from "../../../components/form/input/input.component";
+import { BtnComponent } from "../../../components/form/btn/btn.component";
+import { CheckboxComponent } from "../../../components/form/checkbox/checkbox.component";
+import { HelperComponent } from "../../../components/form/helper/helper.component";
+import { InputComponent } from "../../../components/form/input/input.component";
+import { LinkComponent } from "../../../components/form/link/link.component";
 import  { Task } from "../../../interfaces/task";
-import {FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -16,7 +16,8 @@ import { ActivatedRoute } from '@angular/router';
     CheckboxComponent,
     HelperComponent,
     InputComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LinkComponent
   ],
   templateUrl: './task-edit.component.html',
   styleUrl: './task-edit.component.scss'
