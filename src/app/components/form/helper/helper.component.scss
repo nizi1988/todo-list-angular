@@ -1,0 +1,14 @@
+.helper {
+  color: var(--primary-color-darken);
+  width: 100%;
+  margin: 4px 0 20px 0;
+}
+
+.helper__text {
+  font-size: 12px;
+
+  &:before {
+    content: '⮕';
+    padding-right: 8px;
+  }
+}

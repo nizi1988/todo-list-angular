@@ -9,4 +9,8 @@ import { Component, Input } from '@angular/core';
 export class HelperComponent {
   @Input() text: string = '';
   @Input() className: string = '';
+
+  get classes(): string {
+    return `helper ${this.className}`;
+  }
 }
