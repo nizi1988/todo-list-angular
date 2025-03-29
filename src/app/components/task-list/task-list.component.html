@@ -1,11 +1,13 @@
-<app-link [href]="'/tasks/create'" label="Create a new task" ></app-link>
-<!--show list markup only if there is at least one task-->
-@if (taskList().length > 0) {
+<div class="task-overview">
+    <!--show list markup only if there is at least one task-->
+    <app-select label="Filter your tasks:" [name]="'filter'" [required]="false" [options]="options" (selectChange)="changeFilter($event)"></app-select>
+    
+    @if (tasksService.filtered().length > 0) {
     <div class="task-list">
-        <app-task *ngFor="let task of sortedList()" [task]="task"></app-task>
+        <app-task *ngFor="let task of tasksService.filtered()" [task]="task" (taskDelete)="deleteTask(task.id)" (changeComplete)="changeComplete(task.id)"></app-task>
     </div>
-} @else {
-    <div>
-        There are no tasks yet.
-    </div>
-}
+    } @else {
+        <p>There are no tasks yet.</p>
+    }
+    <app-link [href]="'/tasks/create'" label="Create a new task" className="link--add" ></app-link>
+</div>

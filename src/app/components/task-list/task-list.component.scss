@@ -1,0 +1,16 @@
+.task-overview {
+  padding: 24px 24px 48px;
+
+  p {
+    margin-top: 24px;
+  }
+}
+
+.task-list {
+  max-height: 80dvh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
