@@ -3,14 +3,14 @@
             <input
               type="checkbox"
               class="checkbox "
-              [checked]="checked"
+              [checked]="completed"
               [formControl]="control"
-            >
+              [(ngModel)]="completed">
         } @else {
             <input
               type="checkbox"
               class="checkbox "
-              [checked]="checked"
+              [checked]="completed"
             >
         }
   <span class="label label--checkbox">{{ label }}</span>

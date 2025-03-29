@@ -15,8 +15,7 @@ import { ReactiveFormsModule, FormControl, ControlContainer, FormGroupDirective 
 })
 export class CheckboxComponent {
   @Input() label:  string = '';
-  @Input() name:  string = '';
-  @Input() checked:  boolean = false;
+  @Input() completed:  boolean = false;
   @Input() control: FormControl;
   @Input() useFormControl: boolean = true;
 }
