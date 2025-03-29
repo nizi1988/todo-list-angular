@@ -30,7 +30,7 @@ export class TasksService {
     let id = 0;
 
     //if there is a list in local storage, get the last id and add 1
-    if( localStorage.getItem('tasks') !== null ){
+    if( this.stateTasks().taskList === undefined || this.stateTasks().taskList .length > 0 ){
       id = this.highestId() + 1;
     }
 
